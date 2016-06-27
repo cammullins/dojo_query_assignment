@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+	<button id='btn'>This is the click button</button>
+	<button id="btntwo">This is the hover button</button>
+	<script>
+	(function(window){
+		window.$dojo = window.dojo = function(id){
+			var el = document.getElementById(id);
+
+			el.click = function(callback){
+				el.addEventListener('click', callback);
+			}
+			el.hover = function(inside, outside){
+				el.addEventListener("mouseover", inside);
+				el.addEventListener("mouseout", outside);
+			}
+			console.log(el);
+			return el;
+		}
+		console.log(window);
+	})(window);
+
+	dojo('btn').click(function(){console.log('Wohoo');});
+	dojo('btntwo').hover(function(){console.log("youre in the button");}, function(){console.log("youre out of the button");})
+	</script>
+</body>
+</html>
